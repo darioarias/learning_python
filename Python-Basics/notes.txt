@@ -1,0 +1,2 @@
+Book: Python Basics A Practical Introduction to Python 3 (David Amos, Dan Bader, Joanna Jablonski etc.)
+Link: https://realpython.com/products/python-basics-book/
