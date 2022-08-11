@@ -1,0 +1,10 @@
+Given the root of a tree, return a list with every node by level, from left to right. 
+Example: 
+             10  <-- (root)
+        5         15
+    2      7   12     17  
+
+Your code should return: [10, 5, 15, 2, 7, 12, 17]
+
+Note: we do not care what data structure or algorithm you use, we only care about the output
+Moreover, the solution has to be strictly O(N) or better in time and space complexity 
