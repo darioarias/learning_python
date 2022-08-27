@@ -29,4 +29,3 @@ ender.alive  # true
 s2 = 'spam'
 
 ender.alive  # false
-
