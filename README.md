@@ -5,7 +5,7 @@ This is my journey improving my python skills. I am proficient in Javascript, bu
 
 While interviewing with an engineer, I can 'finesse' and just mention the general form and usually this is enough. For example, while interviwing for company X, I needed to use a queue as part of my solution. JS does not have an optimized queue builtin, so I used an array and make sure I follow FIFO  using Shift and Push which is an overall O(N) (for pop) solution. I mention to the interviewer that if I had more time I would implement a O(1) (for pop) solution that this is okay. 
 
-However, while taking a coding assesment where time complexity is enabled (i.e counts towards yout overall rating), I cannot just use an array as a Queue, worst yet, since most coding assesments are timed, the time I used to implement a queue is time waste since I could've used python all along and avoid all of this. Not to mention all of the other DSA support Python has.
+However, while taking a coding assessment where time complexity is enabled (i.e counts towards yout overall rating), I cannot just use an array as a Queue, worst yet, since most coding assesments are timed, the time I used to implement a queue is time waste since I could've used python all along and avoid all of this. Not to mention all of the other DSA support Python has.
 
 ## Resources
 ### [Python Basics: A Practical Introduction to Python 3](https://realpython.com/products/python-basics-book/)
