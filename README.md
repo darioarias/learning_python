@@ -14,4 +14,4 @@ However, while taking a coding assesment where time complexity is enabled (i.e c
   > No word, or paragraph, can explain the depth cover in this book. The general layout consists of 5 mini-books each focusing in one topic and diving into it. I strongly recommend this book even if you have been using pythons for years. I primise this book has somehting for you. I see myself reading this book 5 years from now and learning just as much. 
   
 ## What's next?
-Finishing Fluent in Python. Letcode with the new skills to get even more comfortable using python. Interviews, interviews!
+Finishing Fluent in Python. Leetcode with the new skills to get even more comfortable using Python. Interviews, interviews!
