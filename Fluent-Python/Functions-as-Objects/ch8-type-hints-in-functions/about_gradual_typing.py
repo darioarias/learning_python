@@ -59,27 +59,33 @@ def double(x: abc.Sequence):
 
 # In a gradual type system, we have the interplay of two different views of types:
 # Duck typing
-## The view adopted by Smalltalk—the pioneering object-oriented language—as well as Python, JavaScript, and Ruby. 
-## Objects have types, but variables (including parameters) are untyped. 
-## In practice, it doesn’t matter what the declared type of the object is, only what operations it actually supports. 
-## If I can invoke birdie.quack(), then birdie is a duck in this context. By definition, duck typing is only enforced at runtime, 
-## when operations on objects are attempted. This is more flexible than nominal typing, at the cost of allowing more errors at runtime.
+## The view adopted by Smalltalk—the pioneering object-oriented language—as 
+## well as Python, JavaScript, and Ruby. Objects have types, but variables 
+## (including parameters) are untyped. In practice, it doesn’t matter 
+## what the declared type of the object is, only what operations it actually supports. 
+## If I can invoke birdie.quack(), then birdie is a duck in this context. 
+## By definition, duck typing is only enforced at runtime, when operations on 
+## objects are attempted. This is more flexible than nominal typing, 
+## at the cost of allowing more errors at runtime.
 
 # Nominal typing
 ## The view adopted by C++, Java, and C#, supported by annotated Python. 
 ## Objects and variables have types. But objects only exist at runtime, 
 ## and the type checker only cares about the source code where variables 
 ## (including parameters) are annotated with type hints. If Duck is a subclass of Bird, 
-## you can assign a Duck instance to a parameter annotated as birdie: Bird. But in the body 
-## of the function, the type checker considers the call birdie.quack() illegal, because birdie is 
-## nominally a Bird, and that class does not provide the .quack() method. 
-## It doesn’t matter if the actual argument at runtime is a Duck, because nominal typing is enforced statically. 
-## The type checker doesn’t run any part of the program, it only reads the source code. 
-## This is more rigid than duck typing, with the advan‐ tage of catching some bugs earlier in a build pipeline, 
+## you can assign a Duck instance to a parameter annotated as birdie: 
+## Bird. But in the body of the function, the type checker considers the call 
+## birdie.quack() illegal, because birdie is nominally a Bird, and that class 
+## does not provide the .quack() method. It doesn’t matter if the actual argument at 
+## runtime is a Duck, because nominal typing is enforced statically. 
+## The type checker doesn’t run any part of the program, it only reads 
+## the source code. This is more rigid than duck typing, with the advantage 
+## of catching some bugs earlier in a build pipeline, 
 ## or even as the code is typed in an IDE.
 
 
-# contrasts duck typing and nominal typing, as well as static type checking and runtime behavior
+# contrasts duck typing and nominal typing, as well as static type 
+# checking and runtime behavior
 class Bird(object):
   pass 
 
