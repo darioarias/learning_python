@@ -83,7 +83,6 @@ def double(x: abc.Sequence):
 ## of catching some bugs earlier in a build pipeline, 
 ## or even as the code is typed in an IDE.
 
-
 # contrasts duck typing and nominal typing, as well as static type 
 # checking and runtime behavior
 class Bird(object):
