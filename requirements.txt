@@ -10,3 +10,6 @@ soupsieve==2.3.2.post1
 typing_extensions==4.3.0
 urllib3==1.26.11
 pyuca==1.2
+mypy==0.971
+mypy-extensions==0.4.3
+ruff==0.0.22
