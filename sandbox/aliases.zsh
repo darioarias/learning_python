@@ -1,5 +1,21 @@
 #! /bin/bash
 
+_args_exits() {
+  # echo "arg $1"
+  if [ -z $1 ]; then
+    return -1
+  else 
+    return 0
+  fi
+}
+
+create_code() {
+  if [ -z $1 ]; then
+    echo "You must provide a file to create and open"
+    return -1
+  fi
+  echo "$1" | xargs -I % sh -c "{ touch % && code %; }"
+}
 
 create_add() {
   if [ -z $1 ]; then
