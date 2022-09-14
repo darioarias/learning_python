@@ -8,6 +8,11 @@
 ### Return a string representing the object as the user wants to see it. 
 ### It’s what you get when you print() an object.
 
+## format()
+### Used by f-strings
+
+## bytes()
+### a byte representation for an object
 
 
 # look at sandbox, repr_vs_str.py for more details
