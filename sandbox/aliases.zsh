@@ -49,7 +49,12 @@ create_commit_code() {
     return -1
   fi
   
-  echo $1 | xargs -I % sh -c "{ touch % && git add % && git commit -m '$2' && code %; }"
+  echo $1 | xargs -I % sh -c "{ touch % && git add % && git commit -m '$2' && code $1 && nodemon $1; }"
   # echo "git commit -m '$2'"
+  return $?
+}
+
+watch() {
+  nodemon $1
   return $?
 }
