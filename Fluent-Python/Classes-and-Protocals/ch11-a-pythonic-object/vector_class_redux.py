@@ -8,6 +8,7 @@ import math
 class Vector2d:
   typecode = 'd'
   __match_args__ = ('x', 'y')
+  # __slots__ = ('__x', '__x')
   
   def __init__(self, x, y):
     self.__x = float(x) 
@@ -69,11 +70,13 @@ class Vector2d:
   def __hash__(self):
     return hash((self.x, self.y))
 
+class ShortVector2d(Vector2d):
+  typecode = 'f'
 
 
 
 ## classmethod Versus staticmethod
 v = Vector2d(4, 3)
+sv = ShortVector2d(10, 20)
 
-
-print(hash(v))
+print(repr(sv))
