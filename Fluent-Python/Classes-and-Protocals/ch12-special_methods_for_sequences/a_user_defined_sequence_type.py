@@ -11,7 +11,7 @@ Create a vector sequence that has the following
 from array import array
 import operator
 import reprlib
-import math 
+import math
 
 
 class Vector: 
@@ -42,20 +42,49 @@ class Vector:
   
   def __bool__(self):
     return bool(abs(self))
+
+  def __len__(self):
+    return len(self._components)
+
+  def __getitem__(self, key):
+    if isinstance(key, slice):
+      cls = type(self)
+      return cls(self._components[key])
+    index = operator.index(key)
+    return self._components[index]
+  
+  __match_args__ = ('x', 'y', 'z', 't')
+  def __getattr__(self, name):
+    cls = type(self) 
+    try:
+      pos = cls.__match_args__.index(name)
+    except ValueError:
+      pos = -1
+    if 0 <= pos < len(self._components):
+      return self._components[pos]
+    msg = f'{cls.__name__!r} object has no attribute {name!r}'
+    raise AttributeError(msg)
+  
+  def __setattr__(self, name, value):
+    cls = type(self)
+    if len(name) == 1:
+      if name in cls.__match_args__:
+        error = 'readonly attribute {attr_name!r}'
+      elif name.islower():
+        error = "can't set attributes 'a' to 'z' in {cls_name!r}"
+      else:
+        error = ''
+      if error:
+        msg = error.format(cls_name=cls.__name__, attr_name=name)
+        raise AttributeError(msg)
+    super().__setattr__(name, value)
   
   @classmethod
   def frombytes(cls, octets):
     typecode = chr(octets[0])
     memv = memoryview(octets[1:]).cast(typecode)
     return cls(memv)
-  
-  def __len__(self):
-    return len(self._components)
-  
-  def __getitem__(self, key):
-    if isinstance(key, slice):
-      cls = type(self)
-      return cls(self._components[key])
-    index = operator.index(key)
-    # print(repr(index), repr(key))
-    return self._components[index]
+
+v1 = Vector(range(2, 5, 1))
+
+print(v1.x)
