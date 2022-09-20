@@ -9,6 +9,7 @@ Create a vector sequence that has the following
 """
 
 from array import array
+import operator
 import reprlib
 import math 
 
@@ -51,8 +52,10 @@ class Vector:
   def __len__(self):
     return len(self._components)
   
-  def __getitem__(self, index):
+  def __getitem__(self, key):
+    if isinstance(key, slice):
+      cls = type(self)
+      return cls(self._components[key])
+    index = operator.index(key)
+    # print(repr(index), repr(key))
     return self._components[index]
-
-v1 = Vector([3, 4, 5])
-print(v1[1:4])
