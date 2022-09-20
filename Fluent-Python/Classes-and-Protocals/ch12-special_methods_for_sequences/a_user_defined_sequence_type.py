@@ -48,4 +48,11 @@ class Vector:
     memv = memoryview(octets[1:]).cast(typecode)
     return cls(memv)
   
+  def __len__(self):
+    return len(self._components)
   
+  def __getitem__(self, index):
+    return self._components[index]
+
+v1 = Vector([3, 4, 5])
+print(v1[1:4])
