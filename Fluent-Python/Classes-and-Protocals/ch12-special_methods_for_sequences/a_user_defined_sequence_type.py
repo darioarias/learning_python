@@ -12,7 +12,7 @@ from array import array
 import operator
 import reprlib
 import math
-
+import functools
 
 class Vector: 
   typecode = 'd'
@@ -36,6 +36,11 @@ class Vector:
   
   def __eq__(self, other):
     return tuple(self) == tuple(other)
+  
+  def __hash__(self):
+    hashes = (hash(x) for x in self._components)
+    # return functools.reduce(operator.xor, hashes, 0)
+    return functools.reduce(lambda a, b: a ^ b, hashes, 0)
   
   def __abs__(self):
     return math.hypot(*self)
@@ -86,5 +91,16 @@ class Vector:
     return cls(memv)
 
 v1 = Vector(range(2, 5, 1))
+print(hash(v1))
 
-print(v1.x)
+# all of the following are equal
+n = 0
+for i in range(1, 6):
+  n ^= i 
+# print(n)
+
+n = functools.reduce(lambda a, b: a ^ b, range(6))
+# print(n)
+
+n = functools.reduce(operator.xor, range(6))
+# print(n)
