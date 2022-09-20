@@ -13,6 +13,7 @@ import operator
 import reprlib
 import math
 import functools
+import itertools
 
 class Vector: 
   typecode = 'd'
@@ -90,6 +91,29 @@ class Vector:
         raise AttributeError(msg)
     super().__setattr__(name, value)
   
+  def angle(self, n):
+    r = math.hypot(*self[n:])
+    a = math.atan2(r, self[n-1])
+    if (n == len(self) -1) and (self[-1] < 0):
+      return math.pi * 2 - a 
+    else:
+      return a 
+
+  def angles(self):
+    return (self.angle(n) for n in range(1, len(self)))
+
+  def __format__(self, fmt_spec=''): 
+    if fmt_spec.endswith('h'):
+      fmt_spec = fmt_spec[:-1]
+      coords = itertools.chain([abs(self)], self.angles())
+      outer_fmt = "<{}>"
+    else:
+      coords = self
+      outer_fmt = '({})'
+    components = (format(c, fmt_spec) for c in coords)
+    return outer_fmt.format(', '.join(components))
+    
+    
   @classmethod
   def frombytes(cls, octets):
     typecode = chr(octets[0])
@@ -97,7 +121,7 @@ class Vector:
     return cls(memv)
 
 v1 = Vector(range(2, 5, 1))
-print(hash(v1))
+print(format(v1, 'h'))
 
 # all of the following are equal
 n = 0
