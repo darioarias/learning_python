@@ -53,7 +53,7 @@ add_commit() {
     return -1
   elif [ -z $2 ]; then
     echo "You did not provide a message for git commit">&1
-    COMMIT_MSG="update to $1"
+    COMMIT_MSG="update $1"
   fi 
   echo $1 | xargs -I % sh -c "{ git add % && git commit -m '$COMMIT_MSG'; }"
 }
