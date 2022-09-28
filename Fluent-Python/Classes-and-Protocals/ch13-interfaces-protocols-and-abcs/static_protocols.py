@@ -94,3 +94,5 @@ def test_item_type() -> None:
     reveal_type(item)
   
   assert isinstance(item, int)
+
+# Best Practices for Protocol Design
