@@ -56,3 +56,20 @@ class LottoBlower(Tombola, Generic[T]):
 
     def inspect(self) -> tuple[T, ...]:
         return tuple(self._balls)
+
+
+# Basic Jargon for Generic Types
+# Generic type
+## A type declared with one or more type variables. Examples: LottoBlower[T], abc.Mapping[KT, VT]
+
+# Formal type parameter
+## The type variables that appear in a generic type declaration.
+## Example: KT and VT in the previous example abc.Mapping[KT, VT]
+
+# Parameterized type
+## A type declared with actual type parameters.
+## Examples: LottoBlower[int], abc.Mapping[str, float]
+
+# Actual type parameter
+## The actual types given as parameters when a
+## parameterized type is declared. Example: the int in LottoBlower[int]
