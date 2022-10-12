@@ -72,3 +72,45 @@ install(orange_juice_dispenser)  # also valid because we are doing covariance
 # still illegal
 # beverage_dispenser = BeverageDispenser(Beverage())
 # install(beverage_dispenser)
+
+
+# A Contravariant Trash Can
+
+# Example 15-20. contravariant.py: type definitions and install function
+from typing import Generic, TypeVar
+
+
+class Refuse:
+    """Any refuse."""
+
+
+class Biodegradable(Refuse):
+    """Biodegradable refuse."""
+
+
+class Compostable(Biodegradable):
+    """Compostable refuse."""
+
+
+T_contra = TypeVar("T_contra", contravariant=True)
+
+
+class TrashCan(Generic[T_contra]):
+    def put(self, refuse: T_contra) -> None:
+        """Store trash until dumped."""
+
+
+def deploy(trash_can: TrashCan[Biodegradable]):
+    """Deploy a trash can for biodegrable refuse."""
+
+
+# The following are acceptabel
+bio_can: TrashCan[Biodegradable] = TrashCan()
+deploy(bio_can)
+
+trash_can: TrashCan[Refuse] = TrashCan()
+deploy(trash_can)
+
+# the following is illegal
+compost_can: TrashCan[Compostable] = TrashCan()
+deploy(compost_can)
