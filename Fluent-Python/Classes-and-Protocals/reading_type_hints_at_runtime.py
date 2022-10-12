@@ -29,3 +29,14 @@ def clip(text: str, max_len: int = 80) -> str:
 # start module with `from __future__ import annotations` to that annotation
 # are no longer evaluated at function definition time.
 # Instead, they are preserved in annotations in string form.
+
+
+## Dealing with the Problem
+
+# Given the unstable situation at present, if you need to read annotations at runtime, I recommend
+## Avoid reading __annotations__ directly; instead,
+## use inspect.get_annota tions (from Python 3.10) or typing.get_type_hints (since Python 3.5).
+
+## Write a custom function of your own as a thin wrapper around inspect
+## .get_annotations or typing.get_type_hints, and have the rest of your
+## codebase call that custom function, so that future changes are localized to a single function.
