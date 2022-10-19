@@ -110,6 +110,17 @@ class Vector:
     #     return self + other
     __radd__ = __add__
 
+    def __mul__(self, scalar):
+        try:
+            factor = float(scalar)
+        except TypeError:
+            return NotImplemented
+        return Vector(value * factor for value in self)
+
+    # def __rmul__(self, scalar):
+    #     return self * scalar
+    __rmul__ = __mul__
+
     def __len__(self):
         return len(self._components)
 
@@ -178,4 +189,4 @@ class Vector:
 
 v = Vector([1, 2])
 v2 = Vector([4, 3])
-# print(v + 1)
+print(v * v)
