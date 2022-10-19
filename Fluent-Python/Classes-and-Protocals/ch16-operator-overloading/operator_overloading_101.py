@@ -81,7 +81,9 @@ class Vector:
         #   if a != b:
         #     return False
         # return True
-        return len(self) == len(other) and all(a == b for a, b in zip(self, other))
+        if isinstance(other, Vector):
+            return len(self) == len(other) and all(a == b for a, b in zip(self, other))
+        return NotImplemented
 
     def __hash__(self):
         hashes = (hash(x) for x in self._components)
