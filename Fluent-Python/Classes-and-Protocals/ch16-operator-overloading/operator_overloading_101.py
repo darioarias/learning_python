@@ -45,6 +45,7 @@ abs(x)
 
 
 # Adding support for unary operators
+import collections.abc as abc
 import functools
 import itertools
 import math
@@ -121,6 +122,19 @@ class Vector:
     #     return self * scalar
     __rmul__ = __mul__
 
+    def __matmul__(self, other):
+        if isinstance(other, abc.Sized) and isinstance(other, abc.Iterable):
+            if len(self) == len(other):
+                return sum(a * b for a, b in zip(self, other))
+            else:
+                raise ValueError("@ requires vectors of equal length.")
+        else:
+            return NotImplemented
+
+    # def __rmatmul__(self, other):
+    #     return self @ other
+    __rmatmul__ = __matmul__
+
     def __len__(self):
         return len(self._components)
 
@@ -185,8 +199,3 @@ class Vector:
         typecode = chr(octets[0])
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)
-
-
-v = Vector([1, 2])
-v2 = Vector([4, 3])
-print(v * v)
