@@ -15,5 +15,6 @@ class Sentence:
         return f"Sentence({reprlib.repr(self.text)})"
     
     def __iter__(self):
-        for match in RE_WORD.finditer(self.text):
-            yield match.group()
+        # for match in RE_WORD.finditer(self.text):
+        #     yield match.group()
+        return (match.group() for match in RE_WORD.finditer(self.text))
