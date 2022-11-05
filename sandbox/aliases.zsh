@@ -41,7 +41,7 @@ new_commit_code() {
     COMMIT_MSG="Create $1"
   fi
   
-  sh -c "{ touch $1 && git add $1 && git commit -m '$COMMIT_MSG' && code $1 && nodemon $1; }"
+  sh -c "{ touch $1 && git add $1 && git commit -m '$COMMIT_MSG' && code $1 && echo \"Running File '$1'\" && nodemon --quiet $1; }"
   return $?
 }
 
@@ -58,6 +58,6 @@ add_commit() {
 }
 
 watch() {
-  nodemon $1
+  nodemon --quiet $1
   return $?
 }
