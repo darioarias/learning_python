@@ -22,4 +22,17 @@ def gcd(m, n):
     return gcd(n, mod(m, n))
 
 
-print(gcd(18, 45))
+# print(gcd(18, 45))  # 9
+
+
+# Lis.py: Top of the file
+
+import math
+import operator as op
+from collections import ChainMap
+from itertools import chain
+from typing import Any, NoReturn, TypeAlias
+
+Symbol: TypeAlias = str
+Atom: TypeAlias = float | int | Symbol
+Expression: TypeAlias = Atom | list
