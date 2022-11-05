@@ -71,5 +71,88 @@ class BinarySearchTree(object):
         pass
 
 
-with BinarySearchTree([10, 5, 15]) as tree:
-    tree.insert(20)
+# with BinarySearchTree([10, 5, 15]) as tree:
+#     tree.insert(20)
+
+
+import sys
+
+
+class LookingGlass:
+    def __enter__(self):
+        self.original_write = sys.stdout.write
+        sys.stdout.write = self.reverse_write
+        return "JABBERWOCKY"
+
+    def reverse_write(self, txt):
+        self.original_write(txt[::-1])
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        sys.stdout.write = self.original_write
+
+        if exc_type is ZeroDivisionError:
+            print("Please DO NOT divide by zero!")
+            return True
+
+
+# with LookingGlass() as what:
+#     print("hello")
+#     print(what)
+#     raise ZeroDivisionError("BRUTH")
+
+# print("normal", what)
+
+
+# You can see that context manager can be use here as well
+# manager = LookingGlass()
+
+# manager.__enter__()
+
+# print("hello world")
+# manager.__exit__(*(None, None, None))
+# print("hello world")
+
+import sys
+from contextlib import contextmanager
+from typing import Any, Iterator
+
+
+@contextmanager
+def context() -> Iterator[Any]:
+    print("setting up")
+    yield "Dario"
+    print("tearing setting up")
+
+
+@contextmanager
+def stdout_manager() -> Iterator[Any]:
+    org = sys.stdout.write
+
+    def indent_write(txt: str) -> int:
+        return org(f"\t {txt}")
+
+    sys.stdout.write = indent_write
+    msg = ""
+    try:
+        yield "Jab Ber Wocky"
+    except ZeroDivisionError:
+        msg = "Please DO NOT divided by zero!"
+    finally:
+        sys.stdout.write = org
+        if msg:
+            print(msg)
+
+
+# with stdout_manager() as val:
+#     print("hello world!")
+#     raise ZeroDivisionError("brah")
+#     pass
+
+
+# Using contextmanagers as decorators
+@stdout_manager()
+def verse():
+    print("the time has come")
+
+
+verse()
