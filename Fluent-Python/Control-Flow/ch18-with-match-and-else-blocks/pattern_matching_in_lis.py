@@ -77,10 +77,10 @@ def parse_atom(token: str) -> Atom:
             return Symbol(token)
 
 
-# The Environmnet
+# The Environment
 
 # The Environment class
-class Environmnet(ChainMap[Symbol, Any]):
+class Environment(ChainMap[Symbol, Any]):
     "A ChainMap that allows changing an item in-place"
 
     def change(self, key: Symbol, value: Any) -> None:
@@ -93,9 +93,9 @@ class Environmnet(ChainMap[Symbol, Any]):
 
 
 # building and returning global environment
-def standard_env() -> Environmnet:
+def standard_env() -> Environment:
     "An environment with some scheme standard procedures."
-    env = Environmnet()
+    env = Environment()
     env.update(vars(math))  # sin, cons, sqrt, pi, ...
     env.update(
         {
@@ -135,3 +135,25 @@ def standard_env() -> Environmnet:
         }
     )
     return env
+
+
+# The REPL (Read, evaluate, print, loop)
+def repl(prompt: str = "lis.py> ") -> NoReturn:
+    "A prompt-read-eval-print loop"
+    globals_env = Environment({}, standard_env())
+    while True:
+        ast = parse(input(prompt))
+        val = evaluate(ast, globals_env)
+        if val is not None:
+            print(lispstr(val))
+
+
+def lispstr(exp: object) -> str:
+    "convert a python object back into a Lisp-readable string."
+    if isinstance(exp, list):
+        return "(" + " ".join(map(lispstr, exp)) + ")"
+    return str(exp)
+
+
+def evaluate(exp: Expression, env: Environment) -> Any:
+    pass
