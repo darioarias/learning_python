@@ -36,3 +36,19 @@ from typing import Any, NoReturn, TypeAlias
 Symbol: TypeAlias = str
 Atom: TypeAlias = float | int | Symbol
 Expression: TypeAlias = Atom | list
+
+
+# the parser
+def parse(program: str) -> Expression:
+    "Read a scheme expression from a string"
+    return read_from_tokens(tokenize(program))
+
+
+def tokenize(s: str) -> list[str]:
+    "Convert a string into a list of tokens."
+    return s.replace("(", "( ").replace(")", " ) ").split()
+
+
+def read_from_tokens(tokens: list[str]) -> Expression:
+    "Read an expression from a sequence of tokens."
+    pass
