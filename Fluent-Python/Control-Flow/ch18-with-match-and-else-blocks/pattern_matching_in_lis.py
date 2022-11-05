@@ -51,4 +51,87 @@ def tokenize(s: str) -> list[str]:
 
 def read_from_tokens(tokens: list[str]) -> Expression:
     "Read an expression from a sequence of tokens."
-    pass
+    if len(tokens) == 0:
+        raise SyntaxError("unexpected EOF while reading")
+    token = tokens.pop(0)
+    if "(" == token:
+        exp = []
+        while tokens[0] != ")":
+            exp.append(read_from_tokens(tokens))
+        tokens.pop(0)  # discard ')'
+        return exp
+    elif ")" == token:
+        raise SyntaxError("unexpected )")
+    else:
+        return parse_atom(token)
+
+
+def parse_atom(token: str) -> Atom:
+    "Numbers become numbers; every other token is a symbol."
+    try:
+        return int(token)
+    except ValueError:
+        try:
+            return float(token)
+        except ValueError:
+            return Symbol(token)
+
+
+# The Environmnet
+
+# The Environment class
+class Environmnet(ChainMap[Symbol, Any]):
+    "A ChainMap that allows changing an item in-place"
+
+    def change(self, key: Symbol, value: Any) -> None:
+        "Find where key is defined and change the value there."
+        for map in self.maps:
+            if key in map:
+                map[key] = value
+                return
+        raise KeyError(key)
+
+
+# building and returning global environment
+def standard_env() -> Environmnet:
+    "An environment with some scheme standard procedures."
+    env = Environmnet()
+    env.update(vars(math))  # sin, cons, sqrt, pi, ...
+    env.update(
+        {
+            "+": op.add,
+            "-": op.sub,
+            "*": op.mul,
+            "/": op.truediv,
+            "quotient": op.floordiv,
+            ">": op.gt,
+            "<": op.lt,
+            ">=": op.ge,
+            "<=": op.le,
+            "=": op.eq,
+            "abs": abs,
+            "append": lambda *args: list(chain(*args)),
+            "apply": lambda proc, args: proc(*args),
+            "begin": lambda *x: x[-1],
+            "car": lambda x: x[0],
+            "cdr": lambda x: x[1:],
+            "cons": lambda x, y: [x] + y,
+            "display": lambda x: print(lispstr(x)),
+            "eq?": op.is_,
+            "equal?": op.eq,
+            "filter": lambda *args: list(filter(*args)),
+            "length": len,
+            "list": lambda *x: list(x),
+            "list?": lambda x: isinstance(x, list),
+            "map": lambda *args: list(map(*args)),
+            "max": max,
+            "min": min,
+            "not": op.not_,
+            "null?": lambda x: x == [],
+            "number?": lambda x: isinstance(x, (int, float)),
+            "procedure?": callable,
+            "round": round,
+            "symbol?": lambda x: isinstance(x, Symbol),
+        }
+    )
+    return env
