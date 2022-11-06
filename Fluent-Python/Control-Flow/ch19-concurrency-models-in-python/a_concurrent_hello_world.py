@@ -41,4 +41,5 @@ def main() -> None:
     print(f"Answer: {result}")
 
 
-main()
+if __name__ == "__main__":
+    main()
