@@ -48,7 +48,7 @@ new_commit_code() {
 add_commit() {
   COMMIT_MSG="$2"
   if [ -z $1 ]; then
-    echo "You must provide a file to create and add to git">&1
+    echo "You must provide a file to create and add to git">&2
     return -1
   elif [ -z $2 ]; then
     echo "You did not provide a message for git commit">&1
