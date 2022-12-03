@@ -61,3 +61,24 @@ watch() {
   nodemon --quiet $1
   return $?
 }
+
+__concat() {
+  FILE_NAME=$(echo $1 | sed 's/ /_/g')
+  FILE_NAME+=".py"
+  echo $FILE_NAME >&1
+}
+
+concat() {
+  INPUT=""
+  if test -n "$1"; then 
+    INPUT="$@"
+  fi 
+
+  if test ! -t 0; then 
+    if [[ ! -z $INPUT ]]; then 
+      INPUT+=" "
+    fi
+    INPUT+=$(cat -)
+  fi 
+  __concat $INPUT
+}
