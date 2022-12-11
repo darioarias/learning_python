@@ -32,16 +32,23 @@ create_commit() {
 }
 
 new_commit_code() {
-    COMMIT_MSG="$2"
-    if [ -z $1 ]; then
-        echo "You must provide a file to create and add to git">&2
-        return -1
-        elif [ -z $2 ]; then
-        echo "You did not provide a message for git commit">&1
-        COMMIT_MSG="Create $1"
+    if [ ! -t 0 ]; then
+        FILE_NAME=$(cat -)
+        COMMIT_MSG="$1"
+    else
+        FILE_NAME="$1"
+        COMMIT_MSG="$2"
     fi
     
-    sh -c "{ touch $1 && git add $1 && git commit -m '$COMMIT_MSG' && code $1 && echo \"Running File '$1'\" && nodemon --quiet $1; }"
+    if [ -z "$FILE_NAME" ]; then
+        echo "You must provide a file to create and add to git">&2
+        return -1
+        elif [ -z "$COMMIT_MSG" ]; then
+        echo "You did not provide a message for git commit">&1
+        COMMIT_MSG="Create $FILE_NAME"
+    fi
+    
+    sh -c "{ touch $FILE_NAME && git add $FILE_NAME && git commit -m '$COMMIT_MSG' && code $FILE_NAME && echo \"Running File '$FILE_NAME'\" && nodemon --quiet $FILE_NAME; }"
     return $?
 }
 
