@@ -80,5 +80,6 @@ concat() {
         fi
         INPUT+=$(cat -)
     fi
-    __concat $INPUT
+    FILE_NAME=$(__concat $INPUT)
+    echo $FILE_NAME >&1
 }
