@@ -1,0 +1,29 @@
+[
+  {
+    "serial": 33451,
+    "name": "Migrating to the Web Using Dart and Polymer - A Guide for Legacy OOP Developers",
+    "event_type": "40-minute conference session",
+
+    "time_start": "2014-07-23 17:00:00",
+    "time_stop": "2014-07-23 17:40:00",
+    "venue_serial": 1458,
+    "description": "The web development platform is massive. With tons of libraries, frameworks and concepts out there, it might be daunting for the &#x27;legacy&#x27; developer to jump into it.\r\n\r\nIn this presentation we will introduce Google Dart &amp; Polymer. Two hot technologies that work in harmony to create powerful web applications using concepts familiar to OOP developers.",
+    "website_url": "http://oscon.com/oscon2014/public/schedule/detail/33451",
+    "speakers": [149868],
+    "categories": ["Emerging Languages"]
+  },
+
+  {
+    "serial": 33457,
+    "name": "Refactoring 101",
+    "event_type": "40-minute conference session",
+
+    "time_start": "2014-07-23 11:30:00",
+    "time_stop": "2014-07-23 12:10:00",
+    "venue_serial": 1449,
+    "description": "Refactoring code (altering code to make it cleaner, simpler, and often faster, while not sacrificing functionality) We hate to do it, so learn how to do it better. Covers: When to refactor. How to refactor. Why refactor. How refactor can help us write better code. Common methodology for refactoring.",
+    "website_url": "http://oscon.com/oscon2014/public/schedule/detail/33457",
+    "speakers": [169862],
+    "categories": ["PHP"]
+  }
+]
