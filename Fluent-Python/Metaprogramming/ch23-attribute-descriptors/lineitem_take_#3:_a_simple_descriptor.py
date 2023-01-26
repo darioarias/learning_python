@@ -21,6 +21,8 @@
 ## A public attribute in the managed class that is handled by
 ## a descriptor instance, with values stored in storage attributes.
 
+from __future__ import annotations
+
 import typing
 
 
@@ -35,5 +37,8 @@ class Quantity:
             msg = f"{self.storage_name} must be > 0"
             raise ValueError(msg)
 
-    def __get__(self, instance: object, owner) -> int:
-        return instance.__dict__[self.storage_name]
+    def __get__(self, instance: object, owner: object) -> Quantity | int:
+        if instance is None:
+            return self
+        else:
+            return instance.__dict__[self.storage_name]
