@@ -31,3 +31,22 @@ class NonBlank(Validated):
         if not value:
             raise ValueError(f"{name} cannot be blank")
         return value
+
+
+class LineItem:
+    description = NonBlank()
+    weight = Quantity()
+    price = Quantity()
+
+    def __init__(self, description: str, weight: float, price: float) -> None:
+        self.description = description
+        self.weight = weight
+        self.price = price
+
+    def subtotal(self) -> float:
+        assert isinstance(self.price, float)
+        assert isinstance(self.weight, float)
+        return self.price * self.weight
+
+
+# item = LineItem("Apple", 1, 1)
