@@ -18,4 +18,4 @@ However, while taking a coding assessment where time complexity is enabled (i.e.
   > Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and comprehensiveness. It covers a broad range of algorithms in depth, yet makes their design and analysis accessible to all levels of readers, with self-contained chapters and algorithms in pseudocode.
 
 ## What's next?
-I am finishing Fluent Python. Leetcode with the new skills to get even more comfortable using Python. Interviews, interviews!
+I am moving into Algorithms design and more design patterns. Leetcode with the new skills to get even more comfortable using Python. Interviews, interviews!
